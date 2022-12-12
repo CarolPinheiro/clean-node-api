@@ -11,14 +11,14 @@ describe('Account Mongo Repository', () => {
   })
 
   beforeEach(async () => {
-    const accountCollection = MongoHelper.getCollection('accounts')
+    const accountCollection = await MongoHelper.getCollection('accounts')
     await accountCollection.deleteMany({})
   })
 
   const makeSut = (): AccountMongoRepository => {
     return new AccountMongoRepository()
   }
-  test('should return an account on success', async() => {
+  test('should return an account on success', async () => {
     const sut = makeSut()
     const account = await sut.add({
       name: 'any_name',
